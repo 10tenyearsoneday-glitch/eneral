@@ -746,3 +746,7 @@ body{ margin:0; }
     font-style: italic;
   }
 }
+/* iPhone 底部工具列/安全區避免遮住頁尾 */
+.footer{
+  padding-bottom: calc(18px + env(safe-area-inset-bottom));
+}
