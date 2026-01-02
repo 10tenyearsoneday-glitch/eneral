@@ -555,7 +555,7 @@ button{ cursor:pointer; }
   text-underline-offset: 3px;
 }
 .footerName{
-  margin-top: 14px;
+  margin-top: 0px;
   text-align:center;
   font-family: "Noto Serif TC","DFKai-SB",serif;
   letter-spacing:.12em;
