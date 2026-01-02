@@ -209,7 +209,7 @@ button{ cursor:pointer; }
 
 .sectionIntro{
   margin-top: 18px;
-  color: rgba(47,59,51,.62);
+  color: rgba(255,255,255,.18);
   font-size: 14px;
   letter-spacing: .04em;
   opacity: .8;
