@@ -12,7 +12,20 @@ const LINE_URL = "https://line.me/R/ti/p/@396kwrga";
 const MAP_711 = "https://emap.pcsc.com.tw/emap.aspx";
 const MAP_FAMILY = "https://www.family.com.tw/Marketing/zh/Map";
 const API_URL = "https://script.google.com/macros/s/AKfycbzTQDS9uZ67YPC3yu9B71Ba3WLwe6_4cL3tTe2ZhBcqi_SIjSbEqEbpB6pd2JpVg-hM/exec";
-// 如果你的 Google Apps Script 需要 action 參數，模板會自動嘗試 ?action=get / ?action=set
+fetch(API_URL)
+  .then(res => res.json())
+  .then(data => {
+    console.log("API 回來的資料", data);
+
+    // 商品
+    renderProducts(data.products || []);
+
+    // 公告
+    renderNotice(data.notice || []);
+
+    // 折扣
+    window.DISCOUNT = data.discount || [];
+  });
 
 
 
