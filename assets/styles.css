@@ -93,7 +93,7 @@ button{ cursor:pointer; }
   min-width: 180px;
 }
 .brand .title{
- font-size:25px;
+  font-size:44px;
   line-height:1;
   font-weight:500;
   letter-spacing: .08em;
@@ -142,7 +142,7 @@ button{ cursor:pointer; }
   filter: blur(.35px);
 }
 .brand .handle{
- font-size:14px;
+  font-size:18px;
   font-style: italic;
   letter-spacing: .06em;
   color: var(--muted);
@@ -167,6 +167,32 @@ button{ cursor:pointer; }
 .iconBtn:hover{ background: rgba(255,255,255,.74); }
 .iconBtn:focus{ outline:none; box-shadow: var(--focus); }
 .iconBtn svg{ width:18px; height:18px; opacity:.85; }
+
+/* Text-based icons (IG / LINE / search / cart / member) */
+.iconGlyph{
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  opacity: .85;
+  color: rgba(47,59,51,.88);
+}
+
+/* Home “關於我們（首頁）”段落置中與微調大小 */
+.homeAbout{
+  text-align: center;
+}
+.homeAbout .aboutTitle{
+  font-size: 18px;
+  opacity: .92;
+}
+.homeAbout .aboutLines{
+  font-size: 14px;
+  line-height: 1.7;
+  opacity: .75;
+}
+
+/* 商品圖片壞掉時的視覺更穩定 */
+.product-img{ object-fit: cover; }
 
 .navWrap{
   margin-top: 12px;
@@ -209,7 +235,7 @@ button{ cursor:pointer; }
 
 .sectionIntro{
   margin-top: 18px;
-  color: rgba(255,255,255,.18);
+  color: rgba(47,59,51,.62);
   font-size: 14px;
   letter-spacing: .04em;
   opacity: .8;

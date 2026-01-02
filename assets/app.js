@@ -69,6 +69,18 @@ document.addEventListener("DOMContentLoaded", () => {
     return num.toLocaleString("zh-TW");
   };
 
+  // 圖片載入失敗的替代圖（SVG Data URI）
+  const IMG_FALLBACK =
+    "data:image/svg+xml;charset=UTF-8," +
+    encodeURIComponent(
+      `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500'>
+        <rect width='100%' height='100%' fill='#eef4ee'/>
+        <rect x='24' y='24' width='752' height='452' rx='22' fill='#ffffff' fill-opacity='0.75' stroke='#c9d6c9'/>
+        <text x='50%' y='48%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='22' fill='#6f7f73'>圖片暫時無法顯示</text>
+        <text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='14' fill='#6f7f73' fill-opacity='0.85'>請更新圖片網址（Google Sheet 的 images 欄位）</text>
+      </svg>`
+    );
+
   const ensureEl = (id, tag = "div", parent = document.body, opts = {}) => {
     let el = document.getElementById(id);
     if (el) return el;
@@ -462,7 +474,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const title = escapeHtml(it.name);
         const st = it.style ? ` <span style="opacity:.65;">(${escapeHtml(it.style)})</span>` : "";
         const img = it.image
-          ? `<img src="${escapeHtml(it.image)}" alt="" style="width:56px;height:56px;border-radius:12px;object-fit:cover;border:1px solid rgba(0,0,0,0.08);">`
+          ? `<img src="${escapeHtml(it.image)}" alt="" onerror="this.onerror=null;this.src='${IMG_FALLBACK}'" style="width:56px;height:56px;border-radius:12px;object-fit:cover;border:1px solid rgba(0,0,0,0.08);">`
           : `<div style="width:56px;height:56px;border-radius:12px;background:rgba(0,0,0,0.06);"></div>`;
         const price = Number(it.price) || 0;
         const qty = Number(it.qty) || 1;
@@ -613,7 +625,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div style="width:100%; height: 220px; background: rgba(0,0,0,0.05);">
                 ${
                   cover
-                    ? `<img src="${escapeHtml(cover)}" alt="${name}"
+                    ? `<img src="${escapeHtml(cover)}" alt="${name}" onerror="this.onerror=null;this.src='${IMG_FALLBACK}'"
                          style="width:100%; height:220px; object-fit:cover; display:block;">`
                     : `<div style="width:100%; height:220px; display:flex; align-items:center; justify-content:center; opacity:.45; font-size:12px;">No Image</div>`
                 }
