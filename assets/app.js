@@ -4,28 +4,31 @@
    - Data stored in localStorage (client-side)
    - NOTE: For real commerce/security, use a backend.
    ========================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-const STORE_KEY = "tyod_store_v1";
+  const STORE_KEY = "tyod_store_v1";
 
-const IG_URL = "https://www.instagram.com/tenyears_oneday?igsh=MW9hcjBnaTdjNzc0MQ%3D%3D&utm_source=qr";
-const LINE_URL = "https://line.me/R/ti/p/@396kwrga";
-const MAP_711 = "https://emap.pcsc.com.tw/emap.aspx";
-const MAP_FAMILY = "https://www.family.com.tw/Marketing/zh/Map";
-const API_URL = "https://script.google.com/macros/s/AKfycbzTQDS9uZ67YPC3yu9B71Ba3WLwe6_4cL3tTe2ZhBcqi_SIjSbEqEbpB6pd2JpVg-hM/exec";
-fetch(API_URL)
-  .then(res => res.json())
-  .then(data => {
-    console.log("API 回來的資料", data);
+  const IG_URL = "https://www.instagram.com/tenyears_oneday";
+  const LINE_URL = "https://line.me/R/ti/p/@396kwrga";
+  const MAP_711 = "https://emap.pcsc.com.tw/emap.aspx";
+  const MAP_FAMILY = "https://www.family.com.tw/Marketing/zh/Map";
 
-    // 商品
-    renderProducts(data.products || []);
+  const API_URL = "https://script.google.com/macros/s/AKfycbzTQDS9uZ67YPC3yu9B71Ba3WLwe6_4cL3tTe2ZhBcqi_SIjSbEqEbpB6pd2JpVg-hM/exec";
 
-    // 公告
-    renderNotice(data.notice || []);
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(data => {
+      console.log("API 回來的資料", data);
 
-    // 折扣
-    window.DISCOUNT = data.discount || [];
-  });
+      renderProducts(data.products || []);
+      renderNotice(data.notice || []);
+      window.DISCOUNT = data.discount || [];
+    })
+    .catch(err => {
+      console.error("API 錯誤", err);
+    });
+
+});
 
 
 
