@@ -1,117 +1,164 @@
 <!doctype html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>十年一日 TEN YEARS ONE DAY</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
+
 <body>
-  <div class="header">
-    <div class="container">
-      <div class="brandRow">
-        <div class="brand">
-          <div class="title">十年一日</div>
-          <div class="dash" aria-hidden="true"></div>
-          <div class="handle">tenyears_oneday</div>
-        </div>
-
-        <div class="topIcons">
-          <a class="iconBtn" href="https://www.instagram.com/tenyears_oneday?igsh=MW9hcjBnaTdjNzc0MQ%3D%3D&utm_source=qr" target="_blank" rel="noopener" title="Instagram">
-            <img src="assets/icons/ig.svg" alt="IG" style="width:18px;height:18px;opacity:.85">
-          </a>
-          <a class="iconBtn" href="https://line.me/R/ti/p/@396kwrga" target="_blank" rel="noopener" title="LINE">
-            <img src="assets/icons/line.svg" alt="LINE" style="width:18px;height:18px;opacity:.85">
-          </a>
-
-          <button class="iconBtn" id="btnSearch" title="搜尋">
-            <img src="assets/icons/search.svg" alt="Search" style="width:18px;height:18px;opacity:.85">
-          </button>
-
-          <a class="iconBtn" href="#cart" id="btnCart" title="購物車">
-            <img src="assets/icons/cart.svg" alt="Cart" style="width:18px;height:18px;opacity:.85">
-          </a>
-
-          <a class="iconBtn" href="#member" id="btnMember" title="會員">
-            <img src="assets/icons/user.svg" alt="User" style="width:18px;height:18px;opacity:.85">
-          </a>
-        </div>
+  <!-- Top Header -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brandTitle">
+        <span class="brandZh">十年一日</span>
+        <span class="brandUnderline" aria-hidden="true"></span>
       </div>
-
-      <div class="navWrap">
-        <nav class="nav" id="nav">
-          <a class="pill" data-route="#home" href="#home">關於我們</a>
-          <a class="pill" data-route="#all" href="#all">全系列🌸</a>
-          <a class="pill" data-route="#silver" href="#silver">純銀飾品✨</a>
-          <a class="pill" data-route="#promo" href="#promo">優惠活動🎁</a>
-          <a class="pill" data-route="#knowledge" href="#knowledge">飾品小知識💡</a>
-          <a class="pill" data-route="#faq" href="#faq">相關問題❗️</a>
-        </nav>
-      </div>
-
-      <div class="sectionIntro" id="subhead">
-        <span id="subheadText">關於我們（首頁）</span>
-      </div>
-
-    </div>
-  </div>
-
-  <main class="container" id="app" aria-live="polite"></main>
-
-  <div class="container" style="padding-top: 0;">
-    <footer class="footerBar">
-  <div class="footerInner">
-    <div class="footerGrid">
-      <div class="footerItem">💎 精選材質 不含鉛，安心佩戴</div>
-      <div class="footerItem">✨ 獨特設計 韓日歐美風格齊聚</div>
-      <div class="footerItem">🚚 便利配送 超商取貨、宅配到府</div>
+      <div class="brandEn canva-italic">tenyears_oneday</div>
     </div>
 
-    <div class="footerDivider"></div>
+    <div class="topIcons" aria-label="外部連結與功能">
+      <button class="iconBtn" id="iconIG" title="Instagram" aria-label="Instagram">
+        <span class="iconGlyph">◎</span>
+      </button>
+      <button class="iconBtn" id="iconLINE" title="LINE" aria-label="LINE">
+        <span class="iconGlyph">◌</span>
+      </button>
+      <button class="iconBtn" id="iconSearch" title="搜尋" aria-label="搜尋">
+        <span class="iconGlyph">⌕</span>
+      </button>
+      <button class="iconBtn" id="iconCart" title="購物車" aria-label="購物車" style="position:relative;">
+        <span class="iconGlyph">🛒</span>
+        <span id="cartCount" class="cartBadge" style="display:none;">0</span>
+      </button>
+      <button class="iconBtn" id="iconMember" title="會員" aria-label="會員">
+        <span class="iconGlyph">👤</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Nav Pills -->
+  <nav class="pillNav" aria-label="導覽列">
+    <a class="pill" href="#home" data-page-link="home">關於我們</a>
+    <a class="pill" href="#all" data-page-link="all">全系列🌸</a>
+    <a class="pill" href="#silver" data-page-link="silver">純銀飾品✨</a>
+    <a class="pill" href="#promo" data-page-link="promo">優惠活動🎁</a>
+    <a class="pill" href="#tips" data-page-link="tips">飾品小知識💡</a>
+    <a class="pill" href="#faq" data-page-link="faq">相關問題❗️</a>
+  </nav>
+
+  <main class="main">
+    <!-- HOME -->
+    <section class="page" id="page-home" data-page="home">
+      <div class="subhead">
+        <div class="subTitle">關於我們（首頁）</div>
+        <div class="subLines">
+          <div class="subBig">十年一日</div>
+          <div class="subBig2">時光淬鍊 · 破碎中尋覓永恆</div>
+          <div class="subBig2">每一件飾品，都是時間的詩篇</div>
+        </div>
+      </div>
+
+      <!-- Notice (from API) -->
+      <div id="noticeWrap" class="noticeArea"></div>
+
+      <!-- Intro Card -->
+      <section class="heroCard">
+        <div class="heroInner">
+          <div class="heroTitle">🤍 歡迎來到 十年一日</div>
+          <div class="heroTitleEn">TEN YEARS ONE DAY</div>
+          <div class="heroItalic canva-italic">Every piece tells a story.</div>
+
+          <div class="heroText">
+            <p>承載著十年以上的友情，<br>繼續延續下去的動力。</p>
+            <p>每一件飾品，<br>都是時間累積的溫柔。</p>
+            <p class="heroThanks">謝謝你，把重要的一天交給十年一日 ✨</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- PRODUCTS shared section -->
+    <section class="page" id="page-products" data-page="products">
+      <div class="pageHead">
+        <div class="pageTitle" id="productsPageTitle">全系列🌸</div>
+        <div class="pageHint">（商品與公告由 Google Sheet 同步）</div>
+      </div>
+
+      <section id="productsWrap" class="productsWrap">
+        <div id="categoryBar" class="categoryBar"></div>
+        <div id="productsGrid" class="productsGrid"></div>
+      </section>
+    </section>
+
+    <!-- PROMO -->
+    <section class="page" id="page-promo" data-page="promo">
+      <div class="infoPanel">
+        <div class="infoTitle">🎁 優惠活動</div>
+        <div class="infoBody">
+          <div class="promoItem promoY">① 全館滿 1000 元免運（活動期間可隨時調整）</div>
+          <div class="promoItem promoB">② 首購 9 折（結帳自動套用）</div>
+          <div class="promoItem promoP">③ 當月壽星 85 折（結帳自動套用）</div>
+          <div class="promoItem promoV">④ 其他活動（可自行新增）</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIPS -->
+    <section class="page" id="page-tips" data-page="tips">
+      <div class="infoPanel">
+        <div class="infoTitle">💡 飾品小知識</div>
+        <div class="infoBody">
+          <div class="smallBox">可在這裡放：保養方式、配戴注意、材質說明…（可自行增加）</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="page" id="page-faq" data-page="faq">
+      <div class="infoPanel">
+        <div class="infoTitle">❗️相關問題</div>
+        <div class="infoBody">
+          <div class="warnBox">⚠️ 提醒：此區可自行增加常見問題（字小一點）</div>
+          <div class="dangerBox">❗️注意事項：此區可自行增加重要注意事項（字小一點）</div>
+          <div class="smallBox">
+            <div class="q">Q：如何下單？</div>
+            <div class="a">A：加入購物車後可結帳（此為示範版，可再接正式金流/會員）。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (full-width dark green) -->
+  <footer class="footer">
+    <div class="footerTop">
+      <div class="footerFeature">💎 精選材質 不含鉛，安心佩戴</div>
+      <div class="footerFeature">✨ 獨特設計 韓日歐美風格齊聚</div>
+      <div class="footerFeature">🚚 便利配送 超商取貨、宅配到府</div>
+    </div>
+
+    <div class="footerLine" aria-hidden="true"></div>
 
     <div class="footerBrand">
-      <div class="footerTitle">十年一日</div>
-      <div class="footerHandle">tenyears_oneday</div>
-      <div class="footerSocial">
-        <a href="https://www.instagram.com/tenyears_oneday?igsh=MW9hcjBnaTdjNzc0MQ%3D%3D&utm_source=qr" target="_blank" rel="noreferrer">Instagram: @tenyears_oneday</a>
-        <span class="sep">|</span>
-        <a href="https://line.me/R/ti/p/@396kwrga" target="_blank" rel="noreferrer">LINE: @396kwrga</a>
-      </div>
+      <div class="footerBrandZh">十年一日</div>
+      <div class="footerBrandEn canva-italic">tenyears_oneday</div>
+      <div class="footerLinks">Instagram: @tenyears_oneday ｜ LINE: @396kwrga</div>
     </div>
-  </div>
-</footer>
 
-<!-- Modal: Search -->
-  <div class="modalOverlay" id="searchModal">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="searchTitle">
-      <div class="modalHead">
-        <h3 id="searchTitle">搜尋商品</h3>
-        <button class="closeX" id="closeSearch" aria-label="關閉">✕</button>
-      </div>
-      <div class="modalBody">
-        <input class="input" id="searchInput" placeholder="輸入關鍵字（商品名 / 分類 / 描述）" />
-        <div style="height:12px"></div>
-        <div id="searchResults" class="products"></div>
-      </div>
-    </div>
-  </div>
+    <!-- Hidden admin link (invisible, left-bottom) -->
+    <a class="adminHidden" href="admin.html" aria-label="admin">admin</a>
+  </footer>
 
-  <!-- Modal: Image -->
-  <div class="modalOverlay" id="imgModal">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="imgTitle">
-      <div class="modalHead">
-        <h3 id="imgTitle">商品圖片</h3>
-        <button class="closeX" id="closeImg" aria-label="關閉">✕</button>
-      </div>
-      <div class="modalBody" id="imgBody"></div>
-    </div>
-  </div>
+  <!-- Image Modal placeholder (app.js will ensure) -->
+  <div class="modalOverlay" id="imgModal" style="display:none;"></div>
 
   <script src="assets/app.js"></script>
 </body>

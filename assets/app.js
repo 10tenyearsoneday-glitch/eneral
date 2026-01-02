@@ -61,6 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
 
+  const cssEscape = (s) => (window.CSS && cssEscape) ? cssEscape(String(s)) : String(s).replace(/[^a-zA-Z0-9_\-]/g, (c)=>`\\${c}`);
+
   const ntd = (n) => {
     const num = Number(n);
     if (!Number.isFinite(num)) return "";
@@ -685,7 +687,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // qty helpers (避免 CSS.escape 相容問題：用 attribute selector 不做 escape)
+    // qty helpers (避免 cssEscape 相容問題：用 attribute selector 不做 escape)
     const getQtyInput = (key) => $(`[data-qty-input="${escapeHtml(key)}"]`, grid);
 
     $$("[data-qty-inc]", grid).forEach((btn) => {
@@ -811,8 +813,65 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+
+  // ====== Simple Router (hash pages) ======
+  const getPageFromHash = () => {
+    const h = (location.hash || "#home").replace("#", "").trim();
+    return h || "home";
+  };
+
+  const applyPage = (page) => {
+    // show/hide pages
+    $$("[data-page]").forEach((sec) => {
+      const p = sec.getAttribute("data-page");
+      const isProducts = p === "products";
+      const active =
+        (page === "home" && p === "home") ||
+        (page === "promo" && p === "promo") ||
+        (page === "tips" && p === "tips") ||
+        (page === "faq" && p === "faq") ||
+        ((page === "all" || page === "silver") && isProducts);
+
+      sec.classList.toggle("isActive", active);
+    });
+
+    // nav active
+    $$("[data-page-link]").forEach((a) => {
+      a.classList.toggle("isActive", a.getAttribute("data-page-link") === page);
+    });
+
+    // products page title and filter
+    if (page === "all" || page === "silver") {
+      const titleEl = document.getElementById("productsPageTitle");
+      if (titleEl) titleEl.textContent = page === "silver" ? "純銀飾品✨" : "全系列🌸";
+
+      CURRENT_CATEGORY = "全部";
+
+      const subset =
+        page === "silver"
+          ? ALL_PRODUCTS.filter((p) => String(p.collection || "").includes("純銀"))
+          : ALL_PRODUCTS;
+
+      buildCategoryPills(subset);
+
+      const filtered =
+        CURRENT_CATEGORY === "全部"
+          ? subset
+          : subset.filter((p) => String(p.category || "") === CURRENT_CATEGORY);
+
+      renderProducts(filtered);
+      scrollToProducts();
+    }
+  };
+
+  window.addEventListener("hashchange", () => {
+    applyPage(getPageFromHash());
+  });
+
   // ====== 初始化 ======
   ensureMainLayoutIfMissing();
   bindTopIconsIfExist();
+  // initial page skeleton
+  applyPage(getPageFromHash());
   fetchData();
 });
